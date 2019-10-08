@@ -39,4 +39,7 @@ class CronerParserSpec extends FlatSpec {
     assertResult(List(command))(Command.eval(command))
   }
 
+  "Hour" should "return the exact range from 15-21" in {
+    assertResult((15 to 21).toList.map(_.toString))(Hour.eval("15-21"))
+  }
 }

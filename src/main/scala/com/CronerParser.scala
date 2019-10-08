@@ -5,10 +5,10 @@ import scala.util.matching.Regex
 
 
 trait CronParser {
-  protected val singleNumOrAsterixP: Regex = """([\d+\*])""".r
+  protected val singleNumOrAsterixP: Regex = """(\d+|\*)""".r
   protected val commaSeparatedP: Regex = """([\d,]+)""".r
-  protected val slashSeparatedP: Regex = """([\d\*])/(\d+)""".r
-  protected val dashSeparatedP: Regex = """([\d+\*])-([\d+\*])""".r
+  protected val slashSeparatedP: Regex = """(\d+|\*)/(\d+)""".r
+  protected val dashSeparatedP: Regex = """(\d+|\*)-(\d+|\*)""".r
   protected val maxAllowedValue: Int = Integer.MAX_VALUE
   protected val minAllowedValue: Int = 0
 

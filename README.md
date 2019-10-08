@@ -39,6 +39,7 @@ Please provide all 6 parameters: minute, hour, day of month, month, day of week,
 ### Not Supported (yet)
 
 - Comma separated patterns. e.g `1-5,6/10`
+- `*` in values e.g `1*-20` 
 - Written Days patterns in the Day of the week e.g `SUN,MON`.
 - Written Months patterns e.g `JAN,FEB`.
 - Years parameters.
