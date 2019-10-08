@@ -24,6 +24,14 @@ class CronerSpec extends FlatSpec {
       s"$parser" should s"evaluate 3,10 to be all values within the limits" in {
         assert(parser.eval("3,10").forall(v => v.toInt >= limits(ind)._1 && v.toInt <= limits(ind)._2))
       }
+
+      s"$parser" should s"evaluate 3,5000 and filter out the 5000" in {
+        assertResult(List("3"))(parser.eval("3,5000"))
+      }
+
+      s"$parser" should s"evaluate 3,invalid and return empty list" in {
+        assertResult(List())(parser.eval("3,invalid"))
+      }
   }
 
   "Command eval" should "return the same input as it is" in {
