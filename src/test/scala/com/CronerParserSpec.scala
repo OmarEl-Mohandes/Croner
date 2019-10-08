@@ -2,7 +2,7 @@ package com
 
 import org.scalatest.FlatSpec
 
-class CronerSpec extends FlatSpec {
+class CronerParserSpec extends FlatSpec {
 
   final val parsers = List(Minute, Hour, DayOfMonth, Month, DayOfWeek)
   final val limits = List((0, 59), (0, 23), (1, 30), (1, 12), (1, 7))
