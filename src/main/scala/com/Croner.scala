@@ -8,13 +8,13 @@ object Croner {
 
   def main(args: Array[String]): Unit = {
 
-    require(args.length == parsers.length, s"Please provide all ${parsers.size} parameters: ${parsers.map(_.toString).mkString(", ")}")
+    require(args.length == parsers.length, s"Found: ${args.toList}\nPlease provide all ${parsers.size} parameters: ${parsers.map(_.toString).mkString(", ")}")
 
     val result = parsers.zipWithIndex.map {
       case (parser, ind) => parser -> parser.eval(args(ind))
     }
 
-    assert(result.forall(_._2.nonEmpty), s"Couldn't parse the input ${args.toList}")
+    require(result.forall(_._2.nonEmpty), s"Couldn't parse the input ${args.toList}")
 
     result.foreach(e => e._1.printFormated(e._2))
   }
@@ -60,7 +60,11 @@ trait CronParser {
     } getOrElse List()
   }
 
-  private def evalCommaSeparated(values: String): List[String] = values.split(",").toList
+  private def evalCommaSeparated(values: String): List[String] = {
+    Try {
+      values.split(",").toList.filter(v => isValueBetweenRange(v.toInt))
+    } getOrElse List()
+  }
 
   private def evalSlashSeparated(a: String, b: String): List[String] = {
     Try {
@@ -71,13 +75,15 @@ trait CronParser {
   }
 
   private def getValuesByIncrement(from: Int, toMax: Int, increment: Int): List[String] = {
-    if (from >= minAllowedValue && from <= maxAllowedValue && toMax <= maxAllowedValue) {
+    if (isValueBetweenRange(from) && isValueBetweenRange(toMax)) {
       (from to toMax by increment)
         .toList
         .map(_.toString)
     } else
       List()
   }
+
+  private def isValueBetweenRange(value: Int): Boolean = value >= minAllowedValue && value <= maxAllowedValue
 
 }
 
