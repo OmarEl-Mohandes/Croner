@@ -1,0 +1,3 @@
+#!/bin/sh
+
+scala -classpath target/scala-2.13/classes com.Croner "$@"
