@@ -5,9 +5,8 @@ This is a simple scala cron parser used for parsing some cron parameters and out
 [One of tons of doc about cron](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm)
 
 ### Requirements
-- You'll need a `scala 2.13`
+- You'll need `scala 2.13`
 - You'll need `scalatest` and `scalactic` for running the tests.
-
 
 ### How to use/run
 - This is sbt based project, you can import and build it in IntelliJ.
@@ -32,17 +31,18 @@ This is a simple scala cron parser used for parsing some cron parameters and out
 java.lang.IllegalArgumentException: requirement failed: Found: List(2, 3, */5, 1-5, *, /lib/exec, ds)
 Please provide all 6 parameters: minute, hour, day of month, month, day of week, command
 ```
-### Supported use cases
-- `*/-,` and numbers are allowed in the parameters 
 
+### Supported use cases
+- `*/-,` and numbers are allowed in the parameters.
+- Fixed months to be 30 days long.
 
 ### Not Supported (yet)
 
 - Comma separated patterns. e.g `1-5,6/10`
-- Written Days patterns in the Day of the week e.g `SUN,MON`
-- Written Months patterns e.g `JAN,FEB`
+- Written Days patterns in the Day of the week e.g `SUN,MON`.
+- Written Months patterns e.g `JAN,FEB`.
 - Years parameters.
-- Extra special characters like `LWC#?`
+- Extra special characters like `LWC#?`.
 
 
 
